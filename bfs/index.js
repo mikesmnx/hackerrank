@@ -69,20 +69,21 @@ class Graph {
     }
     
     // iterate over all nodes and show result as requested
-    // using additional array just for print is a bit overhead, but inputs are
-    // relatively small
     show() {
-        let res = []
+        let last = this.graph.length - 1
+        
         for (let n in this.graph) {
             if (this.graph[n].len > 0) {
-                res.push(this.graph[n].len * EDGE_LENGTH)
+                console.log(this.graph[n].len * EDGE_LENGTH)
             }
             else if (this.graph[n].len == -1) {
-                res.push(this.graph[n].len)
+                console.log(this.graph[n].len)
             }
         }
         
-        console.log(res.join(' '))
+        if (n != last) {
+            console.log(' ')
+        }
     }
 }
 
