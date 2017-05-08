@@ -71,19 +71,22 @@ class Graph {
     // iterate over all nodes and show result as requested
     show() {
         let last = this.graph.length - 1
+        let result = ''
         
         for (let n in this.graph) {
             if (this.graph[n].len > 0) {
-                console.log(this.graph[n].len * EDGE_LENGTH)
+                result += this.graph[n].len * EDGE_LENGTH
             }
             else if (this.graph[n].len == -1) {
-                console.log(this.graph[n].len)
+                result += this.graph[n].len
+            }
+
+            if (n != last && this.graph[n].len) {
+                result += ' '
             }
         }
-        
-        if (n != last) {
-            console.log(' ')
-        }
+
+        console.log(result)
     }
 }
 
