@@ -1,7 +1,32 @@
+/*
+
+structure of our graph
+
+[
+{
+    visited: false  // (was node viseted during bfs),
+    links: [ ]      // array of nodes linked with this one
+    len: -1         // length of path to given node (-1 if no path exists, 0 for given node itself)
+},
+{
+    ...
+},
+...
+{
+    ...
+}
+]
+
+*/
+
+// length of edge
+const EDGE_LENGTH = 6
+
 class Graph {
     constructor(nodes) {
         this.graph = []
         
+        // lets create an empty graph
         for (let k = 0; k < nodes; k++) {
             this.graph.push({
                 visited: false,
@@ -16,6 +41,8 @@ class Graph {
     }
     
     bfs(start) {
+        // we will store in the queue not only the node, but the length of path to given one
+        // classic bfs algorithm 
         let queue = [{ start: start - 1, len: -1}]
         
         this.graph[start - 1].visited = true
@@ -24,7 +51,7 @@ class Graph {
             let node = queue.shift()
             let len = node.len + 1
             
-            // start node, len = 0
+            // given node, len = 0
             if (node.start == start - 1) {
                 this.graph[node.start].len = 0
             }
@@ -41,11 +68,14 @@ class Graph {
         }
     }
     
+    // iterate over all nodes and show result as requested
+    // using additional array just for print is a bit overhead, but inputs are
+    // relatively small
     show() {
         let res = []
         for (let n in this.graph) {
             if (this.graph[n].len > 0) {
-                res.push(this.graph[n].len * 6)
+                res.push(this.graph[n].len * EDGE_LENGTH)
             }
             else if (this.graph[n].len == -1) {
                 res.push(this.graph[n].len)
