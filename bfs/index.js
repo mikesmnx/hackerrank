@@ -118,7 +118,9 @@ function processData(input) {
             graph.addEdge(parts[1], parts[0])
         }
     }
-} 
+}
+
+// default hackerrank stuff
 
 process.stdin.resume();
 process.stdin.setEncoding("ascii");
