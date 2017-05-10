@@ -94,6 +94,7 @@ class Graph {
     }
 }
 
+// mostly forest population part
 function processData(input) {
     let data = input.split('\n')
     
@@ -142,6 +143,7 @@ function processData(input) {
                     forest.addEdge(curId - 1, curId)
                 }
                 
+                // adding type of point
                 forest.setVertex(curId, { type: row[k] })
                 
                 prevCell = row[k]
@@ -155,6 +157,7 @@ function processData(input) {
             prevRow = row
         }
         else {
+            // we need to compare with this num
             luckyNumber = parts[0]
             // print answer
             console.log(forest.searchPath(startRow * forestCols + startCol, Number(luckyNumber)))
