@@ -23,12 +23,14 @@ class Graph {
     // Dijkstra algorithm
     // node with type '*' - end point
     searchPath(start, luckyNumber) {
+        // adding all nodes to the queue
         let queue = this.graph.reduce((q, current, idx) => {
             q.push(idx)
             
             return q
         }, [])
         
+        // initial distance (from the starting poing to the starting point)
         this.graph[start].distance = 0
         
         let pathFound = false
@@ -48,6 +50,7 @@ class Graph {
                 }
             }, { idx: 0, item: queue[0] })
             
+            // working with the closest node now
             current = this.graph[min.item]
             
             // we at the end, path finally found
@@ -57,6 +60,8 @@ class Graph {
                 break
             }
             
+            // updating distance for every children of current node
+            // setting current node as previous in path if new distance is lower
             let currentDistance = current.distance + 1
             for (let k of current.links) {
                 if (this.graph[k].distance > currentDistance) {
@@ -67,11 +72,14 @@ class Graph {
             
             // deleting current node from the queue
             queue.splice(min.idx, 1)
+
+            //repeat now while queue is not empty
         }
         
         // path found, count all crossroads now
         if (pathFound) {
             let crossroads = 0
+            // going backwards to starting point
             while (current.prev != null) {
                 current = this.graph[current.prev]
 
