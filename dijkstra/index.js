@@ -60,7 +60,7 @@ class Graph {
                 break
             }
             
-            // updating distance for every children of current node
+            // updating distance for every child of current node
             // setting current node as previous in path if new distance is lower
             let currentDistance = current.distance + 1
             for (let k of current.links) {
